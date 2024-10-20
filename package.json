@@ -1,0 +1,12 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ui/dist/index.js",
+  "scripts": {
+    "dev": "pnpm --filter ui dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
