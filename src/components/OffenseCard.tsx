@@ -1,8 +1,3 @@
-import React from "react";
-
-
-
-
 interface Offense {
     id: string;
     user: string;
@@ -15,7 +10,7 @@ interface Offense {
   
 export default function OffenseCard({ offense }: { offense: Offense }) {
     return (
-      <div className="border-t border-gray-700 pt-4">
+      <div className="border-b border-gray-700 pb-4 pt-2">
         <div className="flex  justify-between items-center mb-2">
           <span className="text-sm text-gray-400">Offense {offense.id}</span>
           <span className="text-sm text-gray-400">{offense.updated}</span>
