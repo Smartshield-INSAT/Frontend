@@ -12,7 +12,7 @@ const CollapsibleSidebar: React.FC = () => {
   const menuItems = [
     { icon: Home, label: 'Home', path: '/' },
     { icon: AlertCircle, label: 'All Offenses', path: '/offenses' },
-    { icon: Users, label: 'Monitored Users', path: '/users' },
+    { icon: Users, label: 'Monitored Devices', path: '/Devices' },
     { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 

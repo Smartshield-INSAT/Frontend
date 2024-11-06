@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from './components/DashboardLayout.tsx';
-import Home from './pages/Home.tsx';
-import Offenses from './pages/Offenses.tsx';
-import Users from './pages/Users.tsx';
-import Settings from './pages/Settings.tsx';
+import Layout from './components/DashboardLayout';
+import Home from './pages/Home';
+import Offenses from './pages/Offenses';
+import Devices from './pages/Devices';
+import Settings from './pages/Settings';
 
 const App: React.FC = () => {
   return (
@@ -13,7 +13,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="offenses" element={<Offenses />} />
-          <Route path="users" element={<Users />} />
+          <Route path="Devices" element={<Devices />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>

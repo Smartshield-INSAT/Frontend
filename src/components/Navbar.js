@@ -1,7 +1,13 @@
 import React from "react";
 import { Search, Settings, RefreshCw, Users, Filter, ChevronDown, Volume2 } from 'lucide-react';
 
-const Navbar = ( {searchQuery, setSearchQuery, nextRefresh} ) => {
+interface NavbarProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  nextRefresh: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ searchQuery, setSearchQuery, nextRefresh }) => {
     return (
         <header className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-4">

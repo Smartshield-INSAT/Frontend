@@ -6,7 +6,7 @@ const UserRow = ({ user }) =>{
         <div>
           <div className="flex items-center">
             {user.isHighRisk && <div className="w-2 h-2 bg-red-500 rounded-full mr-2" />}
-            <span className="font-medium">{user.username}</span>
+            <span className="font-medium">{user.devicename}</span>
           </div>
           <p className="text-sm text-gray-400">{user.role}</p>
         </div>
