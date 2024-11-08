@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Offenses from './pages/Offenses';
 import Devices from './pages/Devices';
 import Settings from './pages/Settings';
+import AddDevice from './pages/AddDevice';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const App: React.FC = () => {
           <Route index element={<Home />} />
           <Route path="offenses" element={<Offenses />} />
           <Route path="Devices" element={<Devices />} />
+          <Route path="Devices/addDevice" element={<AddDevice />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>

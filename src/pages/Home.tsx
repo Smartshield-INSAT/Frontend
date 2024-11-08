@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import MetricCard from '../components/MetricCard';
 import Navbar from '../components/Navbar';
 import UserRow from '../components/UserRow';
@@ -11,6 +11,7 @@ import {
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
@@ -21,6 +22,7 @@ ChartJS.register(
   LinearScale,
   PointElement,
   LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
@@ -113,77 +115,109 @@ const Home: React.FC = () => {
     { name: 'UBA Machine Learning Anomaly', value: 25, color: '#20B2AA' },
   ];
 
-  
+  // New data for the bar chart
+  const userRequestsData = {
+    labels: ['Ray Sharrer', 'Jay Blue', 'Administrator', 'Katie Wilson', 'Jack Eastwood'],
+    datasets: [
+      {
+        label: 'Number of Requests',
+        data: [662162, 801765, 75640, 600, 260],
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const barChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: 'Users with Most Requests',
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
 
   return (
-    
-      <div className="min-h-screen bg-gray-900 text-gray-100 p-4 rounded-md">
-        {/* Header */}
-        <Navbar searchQuery= {searchQuery} setSearchQuery={setSearchQuery}  nextRefresh = {nextRefresh.toString()} />
+    <div className="min-h-screen bg-gray-900 text-gray-100 p-4 rounded-md">
+      {/* Header */}
+      <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} nextRefresh={nextRefresh.toString()} />
 
-        {/* Metrics */}
-        <div className="grid grid-cols-5 gap-4 mb-6">
-          <MetricCard title="Monitored Devices" value="499" />
-          <MetricCard title="High risk Devices" value="0" subtext="0% of monitored Devices" />
-          <MetricCard title="Devices discovered from events" value="473" subtext="95% of monitored Devices" />
-          <MetricCard title="Devices imported from directory" value="26" subtext="5% of monitored Devices" />
-          <div className="bg-gray-800 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-400 mb-2">Active analytics</h3>
-            <p className="text-sm">• Rules: 91 of 217</p>
-            <p className="text-sm">• Machine learning</p>
-          </div>
+      {/* Metrics */}
+      <div className="grid grid-cols-5 gap-4 mb-6">
+        <MetricCard title="Monitored Devices" value="499" />
+        <MetricCard title="High risk Devices" value="0" subtext="0% of monitored Devices" />
+        <MetricCard title="Devices discovered from events" value="473" subtext="95% of monitored Devices" />
+        <MetricCard title="Devices imported from directory" value="26" subtext="5% of monitored Devices" />
+        <div className="bg-gray-800 p-4 rounded-lg">
+          <h3 className="text-sm text-gray-400 mb-2">Active analytics</h3>
+          <p className="text-sm">• Rules: 91 of 217</p>
+          <p className="text-sm">• Machine learning</p>
         </div>
+      </div>
 
-        {/* Main content */}
-        <div className="grid grid-cols-3 gap-4">
-          {/* Monitored Devices */}
-          <div className="col-span-1 bg-gray-800 p-4 rounded-lg">
-            <h2 className="text-lg font-semibold mb-4">Monitored Devices</h2>
-            <div className="space-y-2">
-              {monitoredDevices.map((user, index) => (
-                <UserRow key={index} user={user} />
-              ))}
-            </div>
-            <button className="mt-4 text-blue-400 hover:underline text-sm">View all 499 Devices</button>
-          </div>
-
-          <div className="col-span-2 space-y-4">
-            <div className="bg-gray-800 p-4 rounded-lg h-[300px] w-full">
-              <Line options={lineChartOptions} data={lineChartData} />
-            </div>
-
-            {/* Risk category breakdown */}
-            <div className="mt-6 bg-gray-800 p-4 rounded-lg">
-            <h2 className="text-lg font-semibold mb-4">Risk category breakdown (Last hour)</h2>
-            <div className="flex items-center justify-between">
-              <CustomPieChart   pieChartData={pieChartData} activeIndex={activeIndex} setActiveIndex={setActiveIndex}   />
-              <div className="space-y-2">
-                 {pieChartData.map((entry, index) => (
-                   <div key={index} className="flex items-center">
-                     <div className="w-4 h-4 mr-2" style={{ backgroundColor: entry.color }}></div>
-                     <span>{entry.name}</span>
-                   </div>
-                 ))}
-               </div>
-             </div>
-            </div> 
-          </div>
-        </div>
-
-        {/* Recent offenses and System score */}
-        <div className="bg-gray-800 p-4 rounded-lg mt-4 px-11">
-          <h2 className="text-lg font-semibold mb-4">Recent offenses</h2>
-          <div className="space-y-4">
-            {recentOffenses.map((offense, index) => (
-              <OffenseCard key={index} offense={offense} />
+      {/* Main content */}
+      <div className="grid grid-cols-3 gap-4">
+        {/* Monitored Devices */}
+        <div className="col-span-1 bg-gray-800 p-4 rounded-lg">
+          <h2 className="text-lg font-semibold mb-4">Monitored Devices</h2>
+          <div className="space-y-2">
+            {monitoredDevices.map((user, index) => (
+              <UserRow key={index} user={user} />
             ))}
           </div>
+          <button className="mt-4 text-blue-400 hover:underline text-sm">View all 499 Devices</button>
         </div>
 
+        <div className="col-span-2 space-y-4">
+          <div className="bg-gray-800 p-4 rounded-lg h-[300px] w-full">
+            <Line options={lineChartOptions} data={lineChartData} />
+          </div>
+
+          {/* Risk category breakdown */}
+          <div className="mt-6 bg-gray-800 p-4 rounded-lg">
+            <h2 className="text-lg font-semibold mb-4">Risk category breakdown (Last hour)</h2>
+            <div className="flex items-center justify-between">
+              <CustomPieChart pieChartData={pieChartData} activeIndex={activeIndex} setActiveIndex={setActiveIndex} />
+              <div className="space-y-2">
+                {pieChartData.map((entry, index) => (
+                  <div key={index} className="flex items-center">
+                    <div className="w-4 h-4 mr-2" style={{ backgroundColor: entry.color }}></div>
+                    <span>{entry.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* New Bar Chart for Users with Most Requests */}
+          <div className="bg-gray-800 p-4 rounded-lg h-[300px] w-full">
+            <Bar options={barChartOptions} data={userRequestsData} />
+          </div>
+        </div>
       </div>
+
+      {/* Recent offenses and System score */}
+      <div className="bg-gray-800 p-4 rounded-lg mt-4 px-11">
+        <h2 className="text-lg font-semibold mb-4">Recent offenses</h2>
+        <div className="space-y-4">
+          {recentOffenses.map((offense, index) => (
+            <OffenseCard key={index} offense={offense} />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
-
-
 
 export default Home;

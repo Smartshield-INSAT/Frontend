@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import UserRow from '../components/UserRow';
+import { PlusCircle } from 'lucide-react';
 
-const Devices: React.FC = () => {
+export default function Devices() {
   const monitoredDevices = [
     { devicename: 'Ray Sharrer', role: 'Sales Lead from Singapore', recentRisk: 15, overallRisk: 539.6, isHighRisk: true },
     { devicename: 'Jay Blue', role: 'Programmer from Colorado', recentRisk: 5, overallRisk: 526.6, isHighRisk: true },
@@ -45,7 +47,16 @@ const Devices: React.FC = () => {
   return (
     <div className='p-4 rounded-lg text-gray-100'>
       {/* Monitored Devices */}
-      <h2 className="text-xl font-semibold mb-4">Monitored Devices</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold">Monitored Devices</h2>
+        <Link
+          to="/Devices/adddevice"
+          className="flex items-center px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+        >
+          <PlusCircle className="w-5 h-5 mr-2" />
+          Add Device
+        </Link>
+      </div>
       <div className="col-span-1 bg-gray-800 p-4 rounded-lg text-gray-100">
         <div className="space-y-2">
           {currentDevices.map((user, index) => (
@@ -53,7 +64,7 @@ const Devices: React.FC = () => {
           ))}
         </div>
         <div className="mt-11 flex justify-center items-center space-x-4">
-        <button 
+          <button 
             onClick={() => handlePageChange('prev')}
             disabled={currentPage === 1}
             className="p-2 rounded-full bg-gray-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
@@ -78,52 +89,4 @@ const Devices: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default Devices;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import UserRow from '../components/UserRow';
-
-// const Devices: React.FC = () => {
-//   const monitoredDevices = [
-//     { devicename: 'Ray Sharrer', role: 'Sales Lead from Singapore', recentRisk: 15, overallRisk: 539.6, isHighRisk: true },
-//     { devicename: 'Jay Blue', role: 'Programmer from Colorado', recentRisk: 5, overallRisk: 526.6, isHighRisk: true },
-//     { devicename: 'Administrator', role: 'Administrator from New Y...', recentRisk: 0, overallRisk: 75.64, isHighRisk: false },
-//     { devicename: 'Katie Wilson', role: 'Scientist from Austin', recentRisk: 0, overallRisk: 0.6, isHighRisk: false },
-//     { devicename: 'KANZLEI\\Pierro', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-//     { devicename: 'DESKTOP-9SR1FC...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-//     { devicename: 'NT AUTHORITY\\S...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-//     { devicename: 'Jack Eastwood', role: 'IT Manager from Seattle', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-//     { devicename: 'INTERCOMPANY1\\...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-//     { devicename: 'MANJU\\alice', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-//   ];
-//   return (
-//     <div className=' p-4 rounded-lg text-gray-100'>
-//       {/* Monitored Devices */}
-//       <h2 className="text-lg font-semibold mb-4">Monitored Devices</h2>
-//       <div className="col-span-1 bg-gray-800 p-4 rounded-lg text-gray-100">
-//         <div className="space-y-2">
-//           {monitoredDevices.map((user, index) => (
-//             <UserRow key={index} user={user} />
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Devices;
+}
