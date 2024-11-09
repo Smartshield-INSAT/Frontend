@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Home, AlertCircle, Users, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Home, AlertCircle, Users, Settings, ChevronLeft, ChevronRight, BarChart2  } from 'lucide-react';
 
 const CollapsibleSidebar: React.FC = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -11,6 +11,7 @@ const CollapsibleSidebar: React.FC = () => {
 
   const menuItems = [
     { icon: Home, label: 'Home', path: '/' },
+    { icon: BarChart2 , label: 'Detailed Analysis', path: '/DetailedAnalysis' },
     { icon: AlertCircle, label: 'All Offenses', path: '/offenses' },
     { icon: Users, label: 'Monitored Devices', path: '/Devices' },
     { icon: Settings, label: 'Settings', path: '/settings' },

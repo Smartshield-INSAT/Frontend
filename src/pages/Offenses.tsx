@@ -1,7 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OffenseCard from '../components/OffenseCard';
+import axios from 'axios';
 
 const Offenses: React.FC = () => {
+  const [allOffenses, setAllOffenses] = useState([]);
+  const [displayedOffenses, setDisplayedOffenses] = useState([]);
+  const BASE_URL = 'http://192.168.100.92:3000/';
+  useEffect(() => {
+    const fetchOffenses = async () => {
+      try {
+        // Fetch recent offences
+        const recentOffencesResponse = await axios.get(`${BASE_URL}api/data/threats/recent`);
+        console.log(recentOffencesResponse);
+
+        setAllOffenses(recentOffencesResponse.data);
+      } catch (error) {
+        console.error('Error fetching offenses:', error);
+      }
+    }
+      fetchOffenses();
+    }, []);
+
     const recentOffenses = [
         {
           id: '#3136',
@@ -91,9 +110,10 @@ const Offenses: React.FC = () => {
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentOffenses = recentOffenses.slice(indexOfFirstItem, indexOfLastItem);
+    // Offenses = Offenses.slice(indexOfFirstItem, indexOfLastItem);
+    setDisplayedOffenses(allOffenses.slice(indexOfFirstItem, indexOfLastItem));
 
-    const totalPages = Math.ceil(recentOffenses.length / itemsPerPage);
+    const totalPages = Math.ceil(allOffenses.length / itemsPerPage);
 
     const handlePageChange = (pageNumber: number) => {
         setCurrentPage(pageNumber);
@@ -104,7 +124,7 @@ const Offenses: React.FC = () => {
             <h2 className="text-xl font-semibold mb-4">All offenses</h2>
             <div className="bg-gray-800 p-4 rounded-lg mt-4 px-11">
                 <div className="space-y-4">
-                    {currentOffenses.map((offense, index) => (
+                    {allOffenses.map((offense, index) => (
                         <OffenseCard key={index} offense={offense} />
                     ))}
                 </div>

@@ -53,7 +53,7 @@ const renderActiveShape = (props) => {
   };
 
 const CustomPieChart = ({ pieChartData, activeIndex ,setActiveIndex }) => {
-    
+    // console.log("haaa iyedd"+pieChartData[0].name);
     return (
       <ResponsiveContainer width="100%" height={400}>
 
@@ -61,7 +61,7 @@ const CustomPieChart = ({ pieChartData, activeIndex ,setActiveIndex }) => {
             <Pie
               activeIndex={activeIndex}
               activeShape={renderActiveShape}
-              data={pieChartData}
+              data={!pieChartData ? [{ name: "no malwares", value: 1, color: "#000000" }] : pieChartData}
               cx="50%"
               cy="50%"
               innerRadius={60}

@@ -16,7 +16,6 @@ export default function Devices() {
     { devicename: 'INTERCOMPANY1\\...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
     { devicename: 'MANJU\\alice', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
     { devicename: 'Ray Sharrer', role: 'Sales Lead from Singapore', recentRisk: 15, overallRisk: 539.6, isHighRisk: true },
-    { devicename: 'Jay Blue', role: 'Programmer from Colorado', recentRisk: 5, overallRisk: 526.6, isHighRisk: true },
     { devicename: 'Administrator', role: 'Administrator from New Y...', recentRisk: 0, overallRisk: 75.64, isHighRisk: false },
     { devicename: 'Katie Wilson', role: 'Scientist from Austin', recentRisk: 0, overallRisk: 0.6, isHighRisk: false },
     { devicename: 'KANZLEI\\Pierro', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
