@@ -53,7 +53,7 @@ const renderActiveShape = (props) => {
   };
 
 const CustomPieChart = ({ pieChartData, activeIndex ,setActiveIndex }) => {
-    // console.log("haaa iyedd"+pieChartData[0].name);
+    // console.log("iyedd y7eb ymmout"+pieChartData[0].name);
     return (
       <ResponsiveContainer width="100%" height={400}>
 

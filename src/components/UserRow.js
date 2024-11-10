@@ -1,14 +1,14 @@
-import React from "react";
 
-const UserRow = ({ user }) =>{
+const UserRow = ({ user , all}) =>{
+  const MAX_CHAR_ID = 14; 
     return (
       <div className="flex items-center justify-between py-2 border-b border-gray-700">
         <div>
           <div className="flex items-center">
             {user.isHighRisk && <div className="w-2 h-2 bg-red-500 rounded-full mr-2" />}
-            <span className="font-medium">{user.serverId}</span>
+            <span className="font-medium">{user.hostname ? user.hostname : (((user.serverId.length > MAX_CHAR_ID) && all) ? user.serverId.slice(0, MAX_CHAR_ID) + "..." : user.serverId) }</span>
           </div>
-          <p className="text-sm text-gray-400">{user.role}</p>
+          <p className="text-sm text-gray-400">{user.hostname ? (user.serverId.length > MAX_CHAR_ID ? user.serverId.slice(0, MAX_CHAR_ID) + "..." : user.serverId) : "" }</p>
         </div>
         <div className="flex items-center space-x-4">
           <span className="text-sm">{user.count}</span>
@@ -25,3 +25,8 @@ const UserRow = ({ user }) =>{
   }
 
 export default UserRow;
+
+
+
+
+

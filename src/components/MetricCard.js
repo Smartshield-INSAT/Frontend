@@ -1,6 +1,3 @@
-import React from "react";
-
-
 const MetricCard = ({ title, value, subtext ="" }) => {
     return (
       <div className="bg-gray-800 p-4 rounded-lg">

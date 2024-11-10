@@ -1,39 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserRow from '../components/UserRow';
 import { PlusCircle } from 'lucide-react';
+import axios from 'axios';
 
 export default function Devices() {
-  const monitoredDevices = [
-    { devicename: 'Ray Sharrer', role: 'Sales Lead from Singapore', recentRisk: 15, overallRisk: 539.6, isHighRisk: true },
-    { devicename: 'Jay Blue', role: 'Programmer from Colorado', recentRisk: 5, overallRisk: 526.6, isHighRisk: true },
-    { devicename: 'Administrator', role: 'Administrator from New Y...', recentRisk: 0, overallRisk: 75.64, isHighRisk: false },
-    { devicename: 'Katie Wilson', role: 'Scientist from Austin', recentRisk: 0, overallRisk: 0.6, isHighRisk: false },
-    { devicename: 'KANZLEI\\Pierro', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'DESKTOP-9SR1FC...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'NT AUTHORITY\\S...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'Jack Eastwood', role: 'IT Manager from Seattle', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'INTERCOMPANY1\\...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'MANJU\\alice', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'Ray Sharrer', role: 'Sales Lead from Singapore', recentRisk: 15, overallRisk: 539.6, isHighRisk: true },
-    { devicename: 'Administrator', role: 'Administrator from New Y...', recentRisk: 0, overallRisk: 75.64, isHighRisk: false },
-    { devicename: 'Katie Wilson', role: 'Scientist from Austin', recentRisk: 0, overallRisk: 0.6, isHighRisk: false },
-    { devicename: 'KANZLEI\\Pierro', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'DESKTOP-9SR1FC...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'NT AUTHORITY\\S...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'Jack Eastwood', role: 'IT Manager from Seattle', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'INTERCOMPANY1\\...', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-    { devicename: 'MANJU\\alice', role: '', recentRisk: 0, overallRisk: 0.26, isHighRisk: false },
-  ];
-
+  const [logsByDeviceCount, setLogsByDeviceCount] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const BASE_URL = 'http://192.168.100.92:3000/';
+  // const BASE_URL = 'http://localhost:3000/';
+
+useEffect(() => {
+    async function fetchData() {
+    try {
+      
+      const responseLogsByDeviceCount = await axios.get(`${BASE_URL}api/data/count-by-server`);
+        setLogsByDeviceCount(responseLogsByDeviceCount.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  fetchData();
+}, []);
+
   const itemsPerPage = 10;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentDevices = monitoredDevices.slice(indexOfFirstItem, indexOfLastItem);
+  const currentDevices = logsByDeviceCount.slice(indexOfFirstItem, indexOfLastItem);
 
-  const totalPages = Math.ceil(monitoredDevices.length / itemsPerPage);
+  const totalPages = Math.ceil(logsByDeviceCount.length / itemsPerPage);
 
   const handlePageChange = (direction: 'prev' | 'next') => {
     if (direction === 'prev' && currentPage > 1) {
@@ -59,7 +55,7 @@ export default function Devices() {
       <div className="col-span-1 bg-gray-800 p-4 rounded-lg text-gray-100">
         <div className="space-y-2">
           {currentDevices.map((user, index) => (
-            <UserRow key={index} user={user} />
+            <UserRow key={index} user={user} all={0} />
           ))}
         </div>
         <div className="mt-11 flex justify-center items-center space-x-4">

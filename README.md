@@ -1,46 +1,94 @@
-# Getting Started with Create React App
+# SMARTSHIELD INSAT: A frontend React Application for Security Monitoring
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React application provides a comprehensive security monitoring solution with features for real-time data analysis, offense monitoring, and device management. The application includes multiple pages to offer users insights and controls over monitored devices and security metrics.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Pages Overview](#pages-overview)
+- [Technologies Used](#technologies-used)
+- [License](#license)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Home (Dashboard):** Displays real-time security metrics with line and bar charts, a recent offenses panel, and an interactive risk category breakdown.
+- **Detailed Analysis:** Provides in-depth analysis of security logs and offenses.
+- **Offenses:** Lists recent security offenses detected in the system.
+- **Devices:** Displays information about monitored devices and allows users to view detailed data on device activity.
+- **Settings:** Allows customization and configuration of application settings.
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Smartshield-INSAT/Frontend.git
+   cd Frontend
+   ```
 
-### `npm run build`
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Run the application:**
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **Environment Variables:**
+   Ensure the API `BASE_URL` is set up in the component or moved to an environment configuration file as needed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+The app runs on `http://localhost:3000` by default. Access it in a browser to start monitoring real-time security metrics, offenses, and device activity.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Project Structure
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project follows a typical React structure with components and pages organized by functionality.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **components/**: Reusable components such as `MetricCard`, `UserRow`, `CustomPieChart`, and `OffenseCard`.
+- **pages/**: Main pages of the application, including Home, Detailed Analysis, Offenses, Devices, and Settings.
+- **App.js**: Root component that sets up routes to different pages.
+- **index.js**: Entry point of the React application.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Pages Overview
 
-## Learn More
+### Home (Dashboard)
+Displays core security metrics and charts:
+  - Real-time logs count (updated every 5 minutes)
+  - Number of monitored devices
+  - Line chart of system score over time
+  - Pie chart for risk category breakdown
+  - Bar chart showing devices with the highest requests
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Detailed Analysis
+Allows users to delve deeper into security logs, with filtering options for specific metrics and annotations.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Offenses
+Lists recent offenses detected in the system, providing a breakdown of threats and potential risks.
+
+### Devices
+Displays a list of all monitored devices, with the ability to view more detailed statistics about each device’s activity.
+
+### Settings
+Allows users to adjust settings for the application, including API configurations and refresh intervals.
+
+## Technologies Used
+
+- **React**: Frontend framework
+- **Chart.js**: Used for displaying charts (line, bar, and pie charts)
+- **Axios**: For making API requests
+- **Lucide Icons**: Icons for UI elements
+- **CSS Framework**: Tailwind CSS (or other CSS styling framework as relevant)
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
+
+---
+
